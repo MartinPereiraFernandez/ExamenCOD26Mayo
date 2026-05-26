@@ -1,5 +1,5 @@
 /**
- * Clase que representa un coche con sus atributos básicos.
+ * Clase que representa coche con sus atributos básicos.
  */
 public class Coche {
     /** Matrícula identificadora del coche. */
@@ -8,9 +8,9 @@ public class Coche {
     String modelo;
     /** Velocidad actual del coche en km/hr. */
     Integer velocidad;
-    /** Kilómetros totales recorridos por el coche. */
+    /** Kilómetros totales recorridos*/
     double kilometrosRecorridos;
-    /** Litros de gasolina actuales del coche. */
+    /** Litros de gasolina en el deposito*/
     double gasolina;
 
     /**

@@ -1,16 +1,16 @@
 /**
- * Clase controladora que coordina la View y el Model.
+ * Clase controladora que junta la View y el Model.
+ * Gestiona la aplicación.
  */
 public class Controller {
 
-    /** Instancia de la vista para interacción con el usuario. */
     static View miView = new View();
-    /** Instancia del modelo para gestión de datos. */
     static Model miModel = new Model();
 
     /**
      * Metodo principal que inicia la aplicación.
-     * @param args argumentos de línea de comandos (no utilizados)
+     * Crea tres coches y lanza el menú principal.
+     * @param args argumentos de línea de comandos
      */
     public static void main(String[] args) {
         miModel.crearCoche("LaFerrari", "SBC 1234");
@@ -63,7 +63,7 @@ public class Controller {
                 String matricula4 = datosGasolina[0];
                 if (miModel.getCoche(matricula4) != null) {
                     double litros = Double.parseDouble(datosGasolina[1]);
-                    double litrosTotales = miModel.ponerGasolina(matricula4, litros);
+                    double litrosTotales = miModel.cargarGasolina(matricula4, litros);
                     miView.mostrarGasolina(matricula4, litrosTotales);
                 } else {
                     miView.mostrarErrorCocheNoEncontrado(matricula4);

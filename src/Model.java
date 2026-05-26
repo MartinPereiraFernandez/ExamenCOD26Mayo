@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Clase encargada de manejar los datos de la aplicación.
+ * Clase encargada de manejar la aplicación.
  */
 public class Model {
 
@@ -11,8 +11,8 @@ public class Model {
     /**
      * Crea un coche y lo añade al parking.
      * @param modelo modelo del coche
-     * @param matricula del coche
-     * @return coche creado
+     * @param matricula matrícula identificadora única
+     * @return el coche creado
      */
     public Coche crearCoche(String modelo, String matricula) {
         Coche aux = new Coche(modelo, matricula);
@@ -23,7 +23,7 @@ public class Model {
     /**
      * Busca un coche por su matrícula.
      * @param matricula matrícula a buscar
-     * @return coche encontrado, o null si no existe
+     * @return el coche encontrado, o null si no existe
      */
     public Coche getCoche(String matricula) {
         Coche aux = null;
@@ -37,7 +37,7 @@ public class Model {
 
     /**
      * Cambia la velocidad de un coche.
-     * @param matricula del coche
+     * @param matricula matrícula del coche
      * @param v nueva velocidad en km/hr
      * @return la nueva velocidad establecida
      */
@@ -56,20 +56,24 @@ public class Model {
     }
 
     /**
-     * Avanza el coche un número de metros y acumula los kilómetros recorridos.
-     * @param matricula del coche que avanza
-     * @param metros que avanza el coche
+     * Avanza el coche un número de metros, acumula los kilómetros recorridos
+     * y descuenta gasolina en función de la velocidad actual.
+     * Fórmula de consumo: km recorridos * velocidad * 0.1
+     * @param matricula matrícula del coche que avanza
+     * @param metros metros que avanza el coche
      * @return total de kilómetros recorridos acumulados
      */
     public double avanzar(String matricula, double metros) {
         Coche coche = getCoche(matricula);
-        coche.kilometrosRecorridos += metros / 1000.0;
+        double km = metros / 1000.0;
+        coche.kilometrosRecorridos += km;
+        coche.gasolina -= km * (coche.velocidad * 0.1);
         return coche.kilometrosRecorridos;
     }
 
     /**
      * Devuelve los kilómetros totales recorridos por un coche.
-     * @param matricula del coche
+     * @param matricula matrícula del coche
      * @return kilómetros recorridos acumulados
      */
     public double getKilometros(String matricula) {
@@ -77,21 +81,21 @@ public class Model {
     }
 
     /**
-     * Añade litros de gasolina al depósito de un coche.
-     * @param matricula del coche
-     * @param litros de gasolina a añadir
-     * @return total de litros de gasolina tras repostar
+     * Añade gasolina (litros) al depósito.
+     * @param matricula matrícula del coche
+     * @param litros litros de gasolina a añadir
+     * @return total de litros de gasolina tras añadir
      */
-    public double ponerGasolina(String matricula, double litros) {
+    public double cargarGasolina(String matricula, double litros) {
         Coche coche = getCoche(matricula);
         coche.gasolina += litros;
         return coche.gasolina;
     }
 
     /**
-     * Devuelve los litros de gasolina actuales de un coche.
-     * @param matricula del coche
-     * @return litros de gasolina actuales
+     * Devuelve los litros de gasolina
+     * @param matricula matrícula del coche
+     * @return litros de gasolina
      */
     public double getGasolina(String matricula) {
         return getCoche(matricula).gasolina;
