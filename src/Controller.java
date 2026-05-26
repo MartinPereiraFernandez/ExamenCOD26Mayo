@@ -9,7 +9,7 @@ public class Controller {
     static Model miModel = new Model();
 
     /**
-     * Método principal que inicia la aplicación.
+     * Metodo principal que inicia la aplicación.
      * @param args argumentos de línea de comandos (no utilizados)
      */
     public static void main(String[] args) {
